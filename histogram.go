@@ -21,7 +21,7 @@ func (h Histogram) Top(n int) []Pair {
 }
 
 func (h Histogram) toList() []Pair {
-	pl := make(PairList, len(h))
+	pl := make(pairList, len(h))
 	i := 0
 	for k, v := range h {
 		pl[i] = Pair{k, v}
@@ -36,8 +36,8 @@ type Pair struct {
 	int
 }
 
-type PairList []Pair
+type pairList []Pair
 
-func (pl PairList) Len() int           { return len(pl) }
-func (pl PairList) Less(i, j int) bool { return pl[i].int < pl[j].int }
-func (pl PairList) Swap(i, j int)      { pl[i], pl[j] = pl[j], pl[i] }
+func (pl pairList) Len() int           { return len(pl) }
+func (pl pairList) Less(i, j int) bool { return pl[i].int < pl[j].int }
+func (pl pairList) Swap(i, j int)      { pl[i], pl[j] = pl[j], pl[i] }

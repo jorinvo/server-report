@@ -1,0 +1,15 @@
+Hi Jorin!
+Here's your weekly server status summary.
+
+Kind regards,
+Your computer
+
+
+
+Most accessed resources:
+
+{{ range .Top 20 }}
+  {{ .int }} - {{ .string }}
+{{end}}
+
+Total: {{ .Total }}
