@@ -10,7 +10,7 @@ import (
 	"text/template"
 )
 
-subject := "Weekly Uberspace Report"
+var subject = "Weekly Uberspace Report"
 
 var accessLogPath = flag.String("access", "", "path to an access_log file")
 var mailAccount = flag.String("mail", "", "mail address that should receive the report")
@@ -29,7 +29,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	cmd := exec.Command("mailx", "-s", subject, *mailAccount)
 	in, err := cmd.StdinPipe()
