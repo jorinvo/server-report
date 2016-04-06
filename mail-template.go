@@ -1,3 +1,6 @@
+package main
+
+var MailTemplate = `
 Hi Jorin!
 Here's your weekly server status summary.
 
@@ -13,3 +16,4 @@ Most accessed resources:
 {{end}}
 
 Total: {{ .Total }}
+`

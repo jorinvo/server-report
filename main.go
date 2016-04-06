@@ -24,7 +24,7 @@ func main() {
 
 	accessLog := parseAccessLog(*accessLogPath)
 
-	tmpl, err := template.ParseFiles("mail.template")
+	tmpl, err := template.New("mail-template").Parse(MailTemplate)
 
 	if err != nil {
 		log.Fatal(err)
