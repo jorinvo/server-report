@@ -18,8 +18,8 @@ var mailAccount = flag.String("mail", "", "mail address that should receive the 
 func main() {
 	flag.Parse()
 
-	if *accessLogPath == "" || *mailAccount == "" {
-		log.Fatal("'access' and 'mail' flags are required.")
+	if *accessLogPath == "" {
+		log.Fatal("'access' flag is required.")
 	}
 
 	accessLog := parseAccessLog(*accessLogPath)
@@ -30,18 +30,22 @@ func main() {
 		log.Fatal(err)
 	}
 
-	cmd := exec.Command("mailx", "-s", subject, *mailAccount)
-	in, err := cmd.StdinPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	cmd.Start()
-	tmpl.Execute(in, accessLog)
-	in.Close()
-	err = cmd.Wait()
-	if err != nil {
-		log.Println("Make sure mailx is installed and configured.")
-		log.Fatal(err)
+	if *mailAccount != "" {
+		cmd := exec.Command("mailx", "-s", subject, *mailAccount)
+		in, err := cmd.StdinPipe()
+		if err != nil {
+			log.Fatal(err)
+		}
+		cmd.Start()
+		tmpl.Execute(in, accessLog)
+		in.Close()
+		err = cmd.Wait()
+		if err != nil {
+			log.Println("Make sure mailx is installed and configured.")
+			log.Fatal(err)
+		}
+	} else {
+		tmpl.Execute(os.Stdout, accessLog)
 	}
 }
 

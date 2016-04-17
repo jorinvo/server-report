@@ -12,8 +12,7 @@ Your computer
 Most accessed resources:
 
 {{ range .Top 20 }}
-  {{ .int }} - {{ .string }}
-{{end}}
+{{ .One }} - {{ .Two }}{{ end }}
 
 Total: {{ .Total }}
 `

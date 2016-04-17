@@ -32,12 +32,12 @@ func (h Histogram) toList() []Pair {
 }
 
 type Pair struct {
-	string
-	int
+	One string
+	Two int
 }
 
 type pairList []Pair
 
 func (pl pairList) Len() int           { return len(pl) }
-func (pl pairList) Less(i, j int) bool { return pl[i].int < pl[j].int }
+func (pl pairList) Less(i, j int) bool { return pl[i].Two < pl[j].Two }
 func (pl pairList) Swap(i, j int)      { pl[i], pl[j] = pl[j], pl[i] }
